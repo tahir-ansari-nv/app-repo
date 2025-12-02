@@ -1,5 +1,5 @@
 const LoginAttemptLog = require('../models/LoginAttemptLog');
-const { v4: uuidv4 } = require('crypto');
+const crypto = require('crypto');
 
 /**
  * Logging Service
@@ -65,11 +65,11 @@ class LoggingService {
   }
 
   /**
-   * Generate a unique ID
+   * Generate a unique ID using crypto.randomUUID
    * @returns {string} Unique ID
    */
   _generateId() {
-    return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    return crypto.randomUUID();
   }
 
   /**
