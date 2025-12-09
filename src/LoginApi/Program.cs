@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using LoginApi;
 using LoginApi.Data;
 using LoginApi.Repositories;
 using LoginApi.Services;
@@ -53,6 +54,22 @@ builder.Services.AddAuthorization();
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
+
+// Seed database in development mode
+if (app.Environment.IsDevelopment())
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        var passwordHasher = scope.ServiceProvider.GetRequiredService<IPasswordHasher>();
+        
+        // Ensure database is created
+        await context.Database.MigrateAsync();
+        
+        // Seed data
+        await DatabaseSeeder.SeedAsync(context, passwordHasher);
+    }
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
