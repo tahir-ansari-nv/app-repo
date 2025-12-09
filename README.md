@@ -66,13 +66,45 @@ Update JWT settings in `src/LoginApi/appsettings.json` (use secure secrets in pr
 
 **Important**: In production, store the JWT secret in a secure location like Azure Key Vault or Secret Manager.
 
+#### Using Azure Key Vault (Production)
+
+```bash
+# Add Azure Key Vault configuration package
+dotnet add package Azure.Extensions.AspNetCore.Configuration.Secrets
+
+# Configure in Program.cs
+var keyVaultUri = new Uri($"https://{builder.Configuration["KeyVaultName"]}.vault.azure.net/");
+builder.Configuration.AddAzureKeyVault(keyVaultUri, new DefaultAzureCredential());
+```
+
+#### Using User Secrets (Development)
+
+```bash
+# Initialize user secrets for the project
+cd src/LoginApi
+dotnet user-secrets init
+
+# Set the JWT secret
+dotnet user-secrets set "JwtSettings:Secret" "YOUR_DEVELOPMENT_SECRET_KEY"
+```
+
+#### Using Environment Variables
+
+```bash
+# Set environment variable (Linux/macOS)
+export JwtSettings__Secret="YOUR_SECRET_KEY"
+
+# Set environment variable (Windows)
+set JwtSettings__Secret=YOUR_SECRET_KEY
+```
+
 ### 5. Run the Application
 
 ```bash
 dotnet run
 ```
 
-The API will be available at `https://localhost:5001` (or the port specified in `launchSettings.json`).
+The API will be available at `https://localhost:7074` (or the port specified in `launchSettings.json`).
 
 ## API Endpoints
 

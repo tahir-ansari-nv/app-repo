@@ -28,6 +28,10 @@ public class ApplicationDbContext : DbContext
         {
             entity.HasKey(l => l.Id);
             entity.Property(l => l.EmailAttempted).IsRequired();
+            
+            // Add composite index for efficient query performance on failed login attempts
+            entity.HasIndex(l => new { l.EmailAttempted, l.IPAddress, l.Timestamp, l.Success })
+                .HasDatabaseName("IX_LoginAttempt_Email_IP_Timestamp_Success");
         });
     }
 }

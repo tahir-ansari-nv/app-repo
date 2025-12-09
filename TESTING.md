@@ -26,7 +26,7 @@ The following test users are automatically seeded in development mode:
 ### Successful Login
 
 ```bash
-curl -X POST https://localhost:5001/api/auth/login \
+curl -X POST https://localhost:7074/api/auth/login \
   -H "Content-Type: application/json" \
   -d '{
     "email": "admin@example.com",
@@ -45,7 +45,7 @@ curl -X POST https://localhost:5001/api/auth/login \
 ### Failed Login - Invalid Credentials
 
 ```bash
-curl -X POST https://localhost:5001/api/auth/login \
+curl -X POST https://localhost:7074/api/auth/login \
   -H "Content-Type: application/json" \
   -d '{
     "email": "admin@example.com",
@@ -63,7 +63,7 @@ curl -X POST https://localhost:5001/api/auth/login \
 ### Failed Login - Inactive Account
 
 ```bash
-curl -X POST https://localhost:5001/api/auth/login \
+curl -X POST https://localhost:7074/api/auth/login \
   -H "Content-Type: application/json" \
   -d '{
     "email": "inactive@example.com",
@@ -81,7 +81,7 @@ curl -X POST https://localhost:5001/api/auth/login \
 ### Failed Login - Invalid Email Format
 
 ```bash
-curl -X POST https://localhost:5001/api/auth/login \
+curl -X POST https://localhost:7074/api/auth/login \
   -H "Content-Type: application/json" \
   -d '{
     "email": "not-an-email",
@@ -106,7 +106,7 @@ curl -X POST https://localhost:5001/api/auth/login \
 ### Failed Login - Password Too Short
 
 ```bash
-curl -X POST https://localhost:5001/api/auth/login \
+curl -X POST https://localhost:7074/api/auth/login \
   -H "Content-Type: application/json" \
   -d '{
     "email": "user@example.com",
@@ -136,7 +136,7 @@ To test the brute force protection, make 6 failed login attempts within 15 minut
 # Run this command 6 times
 for i in {1..6}; do
   echo "Attempt $i:"
-  curl -X POST https://localhost:5001/api/auth/login \
+  curl -X POST https://localhost:7074/api/auth/login \
     -H "Content-Type: application/json" \
     -d '{
       "email": "admin@example.com",
@@ -155,7 +155,7 @@ Once you receive a token, you can use it to access protected endpoints (if any):
 ```bash
 TOKEN="your-jwt-token-here"
 
-curl -X GET https://localhost:5001/api/protected/resource \
+curl -X GET https://localhost:7074/api/protected/resource \
   -H "Authorization: Bearer $TOKEN"
 ```
 
@@ -208,10 +208,10 @@ You can import this collection into Postman for easier testing:
           "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"WrongPassword\"\n}"
         },
         "url": {
-          "raw": "https://localhost:5001/api/auth/login",
+          "raw": "https://localhost:7074/api/auth/login",
           "protocol": "https",
           "host": ["localhost"],
-          "port": "5001",
+          "port": "7074",
           "path": ["api", "auth", "login"]
         }
       }
