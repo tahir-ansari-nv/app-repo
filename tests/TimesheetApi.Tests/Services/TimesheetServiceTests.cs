@@ -31,7 +31,7 @@ public class TimesheetServiceTests
         // Arrange
         var employeeId = Guid.NewGuid();
         var weekStartDate = new DateTime(2024, 6, 3); // Monday
-        _mockTimesheetRepository.Setup(r => r.GetByEmployeeAndWeekAsync(employeeId, weekStartDate, true))
+        _mockTimesheetRepository.Setup(r => r.GetByEmployeeAndWeekAsync(employeeId, weekStartDate, It.IsAny<bool>()))
             .ReturnsAsync((Timesheet?)null);
 
         // Act
@@ -62,7 +62,7 @@ public class TimesheetServiceTests
             }
         };
 
-        _mockTimesheetRepository.Setup(r => r.GetByEmployeeAndWeekAsync(employeeId, weekStartDate, true))
+        _mockTimesheetRepository.Setup(r => r.GetByEmployeeAndWeekAsync(employeeId, weekStartDate, It.IsAny<bool>()))
             .ReturnsAsync((Timesheet?)null);
         _mockTimesheetRepository.Setup(r => r.CreateAsync(It.IsAny<Timesheet>()))
             .ReturnsAsync((Timesheet t) => t);
@@ -84,7 +84,7 @@ public class TimesheetServiceTests
         // Arrange
         var employeeId = Guid.NewGuid();
         var timesheetId = Guid.NewGuid();
-        _mockTimesheetRepository.Setup(r => r.GetByIdAsync(timesheetId, true))
+        _mockTimesheetRepository.Setup(r => r.GetByIdAsync(timesheetId, It.IsAny<bool>()))
             .ReturnsAsync((Timesheet?)null);
 
         // Act & Assert
@@ -107,7 +107,7 @@ public class TimesheetServiceTests
             Entries = new List<TimesheetEntry>()
         };
 
-        _mockTimesheetRepository.Setup(r => r.GetByIdAsync(timesheetId, true))
+        _mockTimesheetRepository.Setup(r => r.GetByIdAsync(timesheetId, It.IsAny<bool>()))
             .ReturnsAsync(timesheet);
 
         // Act & Assert
@@ -138,7 +138,7 @@ public class TimesheetServiceTests
             }
         };
 
-        _mockTimesheetRepository.Setup(r => r.GetByIdAsync(timesheetId, true))
+        _mockTimesheetRepository.Setup(r => r.GetByIdAsync(timesheetId, It.IsAny<bool>()))
             .ReturnsAsync(timesheet);
         _mockTimesheetRepository.Setup(r => r.UpdateAsync(It.IsAny<Timesheet>()))
             .ReturnsAsync((Timesheet t) => t);
@@ -177,7 +177,7 @@ public class TimesheetServiceTests
             }
         };
 
-        _mockTimesheetRepository.Setup(r => r.GetByIdAsync(timesheetId, true))
+        _mockTimesheetRepository.Setup(r => r.GetByIdAsync(timesheetId, It.IsAny<bool>()))
             .ReturnsAsync(timesheet);
         _mockTimesheetRepository.Setup(r => r.UpdateAsync(It.IsAny<Timesheet>()))
             .ReturnsAsync((Timesheet t) => t);
@@ -218,7 +218,7 @@ public class TimesheetServiceTests
             }
         };
 
-        _mockTimesheetRepository.Setup(r => r.GetByIdAsync(timesheetId, true))
+        _mockTimesheetRepository.Setup(r => r.GetByIdAsync(timesheetId, It.IsAny<bool>()))
             .ReturnsAsync(timesheet);
         _mockTimesheetRepository.Setup(r => r.UpdateAsync(It.IsAny<Timesheet>()))
             .ReturnsAsync((Timesheet t) => t);
