@@ -33,7 +33,7 @@ public class TimesheetService : ITimesheetService
 
     public async Task<TimesheetResponse?> GetTimesheetAsync(Guid employeeId, DateTime weekStartDate)
     {
-        var timesheet = await _timesheetRepository.GetByEmployeeAndWeekAsync(employeeId, weekStartDate);
+        var timesheet = await _timesheetRepository.GetByEmployeeAndWeekAsync(employeeId, weekStartDate, includeEntries: true);
         
         if (timesheet == null)
         {
@@ -45,7 +45,7 @@ public class TimesheetService : ITimesheetService
 
     public async Task<TimesheetResponse> CreateOrUpdateTimesheetAsync(Guid employeeId, CreateOrUpdateTimesheetRequest request)
     {
-        var existingTimesheet = await _timesheetRepository.GetByEmployeeAndWeekAsync(employeeId, request.WeekStartDate);
+        var existingTimesheet = await _timesheetRepository.GetByEmployeeAndWeekAsync(employeeId, request.WeekStartDate, includeEntries: true);
 
         if (existingTimesheet != null)
         {
@@ -117,7 +117,7 @@ public class TimesheetService : ITimesheetService
 
     public async Task<TimesheetResponse> SubmitTimesheetAsync(Guid employeeId, Guid timesheetId)
     {
-        var timesheet = await _timesheetRepository.GetByIdAsync(timesheetId);
+        var timesheet = await _timesheetRepository.GetByIdAsync(timesheetId, includeEntries: true);
 
         if (timesheet == null)
         {
@@ -180,7 +180,7 @@ public class TimesheetService : ITimesheetService
 
     public async Task<TimesheetResponse> ApproveTimesheetAsync(Guid timesheetId, Guid managerId)
     {
-        var timesheet = await _timesheetRepository.GetByIdAsync(timesheetId);
+        var timesheet = await _timesheetRepository.GetByIdAsync(timesheetId, includeEntries: true);
 
         if (timesheet == null)
         {
@@ -205,7 +205,7 @@ public class TimesheetService : ITimesheetService
 
     public async Task<TimesheetResponse> RejectTimesheetAsync(Guid timesheetId, Guid managerId, string reason)
     {
-        var timesheet = await _timesheetRepository.GetByIdAsync(timesheetId);
+        var timesheet = await _timesheetRepository.GetByIdAsync(timesheetId, includeEntries: true);
 
         if (timesheet == null)
         {

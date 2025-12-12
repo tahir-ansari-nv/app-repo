@@ -213,12 +213,18 @@ Content-Type: application/json
 
 4. **Configure JWT settings**
    
-   **IMPORTANT**: For production, store the JWT secret in Azure Key Vault or User Secrets, never in appsettings.json!
+   **IMPORTANT**: The development JWT secret key is included in `appsettings.json` for convenience. For production, you MUST store the JWT secret in Azure Key Vault, User Secrets, or environment variables, never in appsettings files!
    
-   For development, you can use the default settings, but for production:
+   For development with user secrets:
    ```bash
    dotnet user-secrets init --project src/TimesheetApi
    dotnet user-secrets set "JwtSettings:SecretKey" "your-secure-secret-key-here" --project src/TimesheetApi
+   ```
+   
+   For production deployment, set via environment variables:
+   ```bash
+   export JwtSettings__SecretKey="your-production-secret-from-key-vault"
+   export ConnectionStrings__DefaultConnection="your-production-connection-string"
    ```
 
 5. **Create database migrations**
