@@ -1,0 +1,85 @@
+# ASP.NET Core / .NET build artifacts
+bin/
+obj/
+**/bin/
+**/obj/
+[Bb]uild/
+
+# Intermediate files
+*.obj
+*.pdb
+*.mdb
+*.tmp
+*.tmp_proj
+*.log
+logs/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio Code history (keep .vscode unless you choose to ignore it)
+.history/
+# Visual Studio Code settings
+.vscode/
+
+# Test results & coverage
+TestResults/
+*.coverage
+*.coveragexml
+coverage/
+.vscode-test/
+
+# NuGet
+*.nupkg
+*.snupkg
+**/packages/*
+!**/packages/build/
+.nuget/
+
+# Publish profiles & outputs
+*.pubxml
+*.publishproj
+publish/
+
+# IIS Express
+iisexpress/
+App_Data/
+
+# JetBrains Rider
+.idea/
+*.DotSettings.user
+
+# ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+
+# OS junk
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+# Linux
+*~
+
+# Dotnet tools cache
+.dotnet-tools/
+
+# Environment files
+.env
+.env.*
+
+# Local HTTPS dev certs (if generated into repo; default is user profile)
+aspnet/https/
+
+# GitHub metadata
+.github/
