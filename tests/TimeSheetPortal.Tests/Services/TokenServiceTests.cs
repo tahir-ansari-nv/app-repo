@@ -85,7 +85,7 @@ public class TokenServiceTests
         var userId = Guid.NewGuid();
         var token = service.GenerateJwtToken(userId, "testuser", "test@example.com");
 
-        var principal = _service.ValidateToken(token);
+        var principal = service.ValidateToken(token);
 
         Assert.Null(principal);
     }

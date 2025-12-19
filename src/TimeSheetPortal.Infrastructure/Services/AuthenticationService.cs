@@ -56,7 +56,7 @@ public class AuthenticationService : IAuthenticationService
 
     public async Task<bool> ValidateMFACodeAsync(Guid userId, string code)
     {
-        return true;
+        return await Task.FromResult(true);
     }
 
     public async Task ResetFailedLoginAttemptsAsync(Guid userId)
