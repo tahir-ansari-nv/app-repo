@@ -2,6 +2,12 @@
 
 This project implements a secure authentication and authorization system for the TimeSheet Management Portal using ASP.NET Core Web API with Entity Framework Core, JWT authentication, and comprehensive security features.
 
+## 📚 Documentation
+
+- **[API Documentation](docs/API_DOCUMENTATION.md)** - Complete API reference with examples
+- **[Deployment Guide](docs/DEPLOYMENT_GUIDE.md)** - Deployment instructions for various platforms
+- **[Security Summary](docs/SECURITY_SUMMARY.md)** - Comprehensive security analysis and recommendations
+
 ## Features
 
 - **User Authentication**: Secure login with username and password
@@ -22,8 +28,12 @@ TimeSheetPortal/
 │   ├── TimeSheetPortal.API/          # Web API layer
 │   ├── TimeSheetPortal.Core/         # Domain entities, DTOs, interfaces
 │   └── TimeSheetPortal.Infrastructure/ # Repositories, services, DbContext
-└── tests/
-    └── TimeSheetPortal.Tests/        # Unit and integration tests
+├── tests/
+│   └── TimeSheetPortal.Tests/        # Unit and integration tests
+└── docs/
+    ├── API_DOCUMENTATION.md          # API reference
+    ├── DEPLOYMENT_GUIDE.md           # Deployment instructions
+    └── SECURITY_SUMMARY.md           # Security analysis
 ```
 
 ### Technology Stack
